@@ -21,9 +21,13 @@
     </build>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
         <selenium-java.version>3.141.59</selenium-java.version>
-        <junit.version>4.13</junit.version>
         <testng.version>7.1.0</testng.version>
+        <cukes.version>1.2.6</cukes.version>
+
     </properties>
 
     <dependencies>
@@ -46,6 +50,20 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.6</version>
+        </dependency>
+
+        <!-- Cucumber depencies-->
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cukes.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${cukes.version}</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
