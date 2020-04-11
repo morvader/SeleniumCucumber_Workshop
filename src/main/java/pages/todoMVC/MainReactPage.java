@@ -3,6 +3,8 @@ package pages.todoMVC;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MainReactPage {
     WebDriver driver;
@@ -22,6 +24,9 @@ public class MainReactPage {
     }
 
     public MainReactPage addNewTodo(String item) {
+        WebDriverWait wait = new WebDriverWait(this.driver, 5);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(newTodo));
+
         driver.findElement(newTodo).sendKeys(item + Keys.ENTER);
         return this;
     }

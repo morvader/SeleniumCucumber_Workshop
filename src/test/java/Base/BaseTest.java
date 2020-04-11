@@ -27,11 +27,11 @@ public class BaseTest {
     @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult result) throws IOException {
         if (result.getStatus() == ITestResult.FAILURE)
-            takeScreenshot("./screenshots", result.getName());
+            takeScreenshot(driver, "./screenshots", result.getName());
         driver.quit();
     }
 
-    private void takeScreenshot(String destinationPath, String testName) throws IOException {
+    public static void takeScreenshot(WebDriver driver, String destinationPath, String testName) throws IOException {
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile, new File(destinationPath, testName + ".png"));
     }
