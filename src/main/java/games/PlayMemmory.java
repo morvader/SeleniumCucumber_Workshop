@@ -56,6 +56,7 @@ public class PlayMemmory {
                     .collect(Collectors.toList());
 
             if (!matchingCards.isEmpty()) {
+                //Click on parent node (div)
                 matchingCards.get(0).findElement(By.xpath("./..")).click();
                 matchingCards.get(1).findElement(By.xpath("./..")).click();
             }
