@@ -1,5 +1,6 @@
+package games;
+
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,8 +13,8 @@ public class Play1to50 {
         System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
 
         WebDriver driver = new ChromeDriver();
-        driver.manage().window().setSize(new Dimension(600, 600));
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+
         driver.get("http://zzzscore.com/1to50/");
 
         String numberSelector = "//*[@id=\"grid\"]//div[text()=\"%s\"]";
