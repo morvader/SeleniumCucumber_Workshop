@@ -87,7 +87,7 @@ public class MyStepdefs {
 
     @And("^la lista contiene el elemento \"([^\"]*)\"$")
     public void laListaContieneElElemento(String nombreElemento) throws Throwable {
-        final ArrayList<String> nombreElementos = mainPage.getNombreElementos();
+        final ArrayList<String> nombreElementos = mainPage.getElementNames();
         assertTrue(nombreElementos.contains(nombreElemento), "La lista no contiene el elmento buscado");
     }
 
@@ -98,7 +98,7 @@ public class MyStepdefs {
 
     @Then("^el elemento \"([^\"]*)\" deja de aparecer en las listas$")
     public void elElementoDejaDeAparecerEnLasListas(String nombreElemento) throws Throwable {
-        final ArrayList<String> nombreElementos = mainPage.getNombreElementos();
+        final ArrayList<String> nombreElementos = mainPage.getElementNames();
         assertFalse(nombreElementos.contains(nombreElemento), "La lista no contiene el elmento buscado");
     }
 }

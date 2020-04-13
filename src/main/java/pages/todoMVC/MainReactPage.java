@@ -21,6 +21,8 @@ public class MainReactPage {
     By completeItemBtn = By.cssSelector(".toggle");
     By deleteItem = By.cssSelector(".destroy");
     By completedListBtn = By.linkText("Completed");
+    By allListBtn = By.linkText("All");
+    By activeListBtn = By.linkText("Active");
 
 
     public MainReactPage(WebDriver driver) {
@@ -44,16 +46,17 @@ public class MainReactPage {
         return driver.findElements(listItems).size();
     }
 
-    public ArrayList<String> getNombreElementos(){
-        ArrayList<String> nombres = new ArrayList<>();
-        for(WebElement item: driver.findElements(listItems)){
-            nombres.add(item.getText());
+    public ArrayList<String> getElementNames() {
+        ArrayList<String> names = new ArrayList<>();
+        for (WebElement item : driver.findElements(listItems)) {
+            names.add(item.getText());
         }
 
-        return nombres;
+        return names;
     }
 
     public int getCompletedlistSize() {
+        clickCompletedBtn();
         return driver.findElements(completedListItems).size();
     }
 
