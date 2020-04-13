@@ -3,8 +3,12 @@ package pages.todoMVC;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.ArrayList;
 
 public class MainReactPage {
     WebDriver driver;
@@ -15,7 +19,9 @@ public class MainReactPage {
     By listItems = By.cssSelector(".todo-list li");
     By completedListItems = By.cssSelector(".todo-list .completed");
     By completeItemBtn = By.cssSelector(".toggle");
+    By deleteItem = By.cssSelector(".destroy");
     By completedListBtn = By.linkText("Completed");
+
 
     public MainReactPage(WebDriver driver) {
         this.driver = driver;
@@ -38,6 +44,15 @@ public class MainReactPage {
         return driver.findElements(listItems).size();
     }
 
+    public ArrayList<String> getNombreElementos(){
+        ArrayList<String> nombres = new ArrayList<>();
+        for(WebElement item: driver.findElements(listItems)){
+            nombres.add(item.getText());
+        }
+
+        return nombres;
+    }
+
     public int getCompletedlistSize() {
         return driver.findElements(completedListItems).size();
     }
@@ -49,6 +64,17 @@ public class MainReactPage {
     public MainReactPage completeElement(int nElement) {
         driver.findElements(listItems).get(nElement - 1)
                 .findElement(completeItemBtn).click();
+        return this;
+    }
+
+    public MainReactPage deleteElement(int nElement) {
+        final WebElement itemToDelete = driver.findElements(listItems).get(nElement - 1);
+
+        Actions action = new Actions(driver);
+        action.moveToElement(itemToDelete).perform();
+
+        itemToDelete.findElement(deleteItem).click();
+
         return this;
     }
 

@@ -15,8 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static Base.BaseTest.takeScreenshot;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 public class MyStepdefs {
     WebDriver driver;
@@ -53,11 +52,6 @@ public class MyStepdefs {
         assertEquals(elementos, 0, "La lista de elementos no está vacía");
     }
 
-    @When("^añado un elemento a lista$")
-    public void añadoUnElementoALista() {
-        mainPage.addNewTodo("Nuevo Elemento");
-    }
-
     @Then("^la lista tiene (\\d+) elemento$")
     public void laListaTieneElemento(int nElementos) {
         int elementos = mainPage.getNumberOfElements();
@@ -84,5 +78,27 @@ public class MyStepdefs {
     @Then("^el elemento (\\d+) queda marcado como completado$")
     public void elElementoQuedaMarcadoComoCompletado(int nElemento) {
         assertTrue(mainPage.isElementCompleted(nElemento), "El elemento no se ha marcado como completado");
+    }
+
+    @When("^añado el elemento \"([^\"]*)\" a lista$")
+    public void añadoElElementoALista(String newElement) throws Throwable {
+        mainPage.addNewTodo(newElement);
+    }
+
+    @And("^la lista contiene el elemento \"([^\"]*)\"$")
+    public void laListaContieneElElemento(String nombreElemento) throws Throwable {
+        final ArrayList<String> nombreElementos = mainPage.getNombreElementos();
+        assertTrue(nombreElementos.contains(nombreElemento), "La lista no contiene el elmento buscado");
+    }
+
+    @When("^elimino el elemento (\\d+)")
+    public void eliminoElElemento(int nElemento) throws Throwable {
+        mainPage.deleteElement(nElemento);
+    }
+
+    @Then("^el elemento \"([^\"]*)\" deja de aparecer en las listas$")
+    public void elElementoDejaDeAparecerEnLasListas(String nombreElemento) throws Throwable {
+        final ArrayList<String> nombreElementos = mainPage.getNombreElementos();
+        assertFalse(nombreElementos.contains(nombreElemento), "La lista no contiene el elmento buscado");
     }
 }

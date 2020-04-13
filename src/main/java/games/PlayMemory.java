@@ -15,7 +15,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class PlayMemmory {
+public class PlayMemory {
 
     public static void main(String[] args) {
         System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
