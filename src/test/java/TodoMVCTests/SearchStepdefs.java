@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import static Base.BaseTest.takeScreenshot;
 import static org.testng.Assert.*;
 
-public class MyStepdefs {
+public class SearchStepdefs {
     WebDriver driver;
     MainReactPage mainPage;
 

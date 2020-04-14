@@ -22,14 +22,22 @@ public class MyStepdefs {
 
     private WebDriver driver;
 
+    private World world;
+
     MainPage mainPage;
     ResultsPage resultsPage;
+
+    public MyStepdefs(World world) {
+        this.world = world;
+    }
 
     @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
 
         driver = new ChromeDriver();
+
+        world.driver = driver;
 
         mainPage = new MainPage(driver);
     }
@@ -49,6 +57,7 @@ public class MyStepdefs {
     @When("^busco el elemento \"([^\"]*)\"$")
     public void buscoElElemento(String item) throws Throwable {
         resultsPage = mainPage.searchItem(item);
+        world.selectedItemName = item;
     }
 
     @Then("^el elemento \"([^\"]*)\" aparece en los resultados con el precio \"([^\"]*)\"$")

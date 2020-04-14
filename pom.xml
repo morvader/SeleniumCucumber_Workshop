@@ -65,7 +65,12 @@
             <version>${cukes.version}</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-picocontainer</artifactId>
+            <version>${cukes.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 </project>
